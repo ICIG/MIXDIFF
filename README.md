@@ -45,7 +45,7 @@ For example, one can increase the speaking rate by 20 % and decrease the volume 
 python3 synthesize.py --text "YOUR_DESIRED_TEXT" --model MODEL --restore_step RESTORE_STEP --mode single --dataset DATASET --duration_control 0.8 --energy_control 0.8
 ```
 
-Please note that the controllability is originated from [FastSpeech2](https://arxiv.org/abs/2006.04558) and not a vital interest of DiffGAN-TTS.
+Please note that the controllability is originated from [FastSpeech2](https://arxiv.org/abs/2006.04558) and not a vital interest of Ours.
 
 # Training
 

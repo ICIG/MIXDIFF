@@ -1,23 +1,9 @@
-<p align="center">
-    <img src="img/model_1.png" width="80%">
-</p>
-
-<p align="center">
-    <img src="img/model_2.png" width="80%">
-</p>
-
-# Repository Status
-- [x] Naive Version of DiffGAN-TTS
-- [x] Active Shallow Diffusion Mechanism: DiffGAN-TTS (two-stage)
-
 ## Audio Samples
-Audio samples are available at [/demo](https://github.com/keonlee9420/DiffGAN-TTS/tree/main/demo).
+The audio example webpage is still under development
 
 # Quickstart
 
 ***DATASET*** refers to the names of datasets such as `LJSpeech` and `VCTK` in the following documents.
-
-***MODEL*** refers to the types of model (choose from '**naive**', '**aux**', '**shallow**').
 
 ## Dependencies
 You can install the Python dependencies with
@@ -27,9 +13,8 @@ pip3 install -r requirements.txt
 
 ## Inference
 
-You have to download the [pretrained models](https://drive.google.com/drive/folders/14EqKdfq3hTCg8BQ1ZTc8aJwwnpkFOAzh?usp=sharing) and put them in 
-- ``output/ckpt/DATASET_naive/`` for '**naive**' model.
-- ``output/ckpt/DATASET_shallow/`` for '**shallow**' model. Please note that the checkpoint of the '**shallow**' model contains both '**shallow**' and '**aux**' models, and these two models will share all directories except results throughout the whole process.
+You private message me to get pre-processing and put them in 
+- ``output/ckpt
 
 For a **single-speaker TTS**, run
 ```
@@ -68,9 +53,9 @@ Please note that the controllability is originated from [FastSpeech2](https://ar
 
 The supported datasets are
 
-- [LJSpeech](https://keithito.com/LJ-Speech-Dataset/): a **single-speaker** English dataset consists of 13100 short audio clips of a female speaker reading passages from 7 non-fiction books, approximately 24 hours in total.
+- [LJSpeech](https://keithito.com/LJ-Speech-Dataset/)
 
-- [VCTK](https://datashare.ed.ac.uk/handle/10283/3443): The CSTR VCTK Corpus includes speech data uttered by 110 English speakers (**multi-speaker TTS**) with various accents. Each speaker reads out about 400 sentences, which were selected from a newspaper, the rainbow passage and an elicitation paragraph used for the speech accent archive.
+- [VCTK](https://datashare.ed.ac.uk/handle/10283/3443)
 
 ## Preprocessing
 
@@ -92,29 +77,14 @@ The supported datasets are
 
 ## Training
 
-You can train three types of model: '**naive**', '**aux**', and '**shallow**'.
+You can train model: 
 
-- Training Naive Version ('**naive**'):
+- Training :
 
-    Train the naive version with
+    Train with
     ```
     python3 train.py --model naive --dataset DATASET
     ```
-
-- Training Basic Acoustic Model for Shallow Version ('**aux**'):
-
-    To train the shallow version, we need a pre-trained FastSpeech2. The below command will let you train the FastSpeech2 modules, including Auxiliary (Mel) Decoder.
-    ```
-    python3 train.py --model aux --dataset DATASET
-    ```
-
-- Training Shallow Version ('**shallow**'):
-
-    To leverage pre-trained FastSpeech2, including Auxiliary (Mel) Decoder, you must pass `--restore_step` with the final step of auxiliary FastSpeech2 training as the following command.
-    ```
-    python3 train.py --model shallow --restore_step RESTORE_STEP --dataset DATASET
-    ```
-    For example, if the last checkpoint is saved at 200000 steps during the auxiliary training, you have to set `--restore_step` with `200000`. Then it will load and freeze the aux model and then continue the training under the active shallow diffusion mechanism.
 
 # TensorBoard
 
@@ -125,15 +95,3 @@ tensorboard --logdir output/log/DATASET
 
 to serve TensorBoard on your localhost.
 The loss curves, synthesized mel-spectrograms, and audios are shown.
-
-## Naive Diffusion
-
-![](./img/tensorboard_loss_naive.png)
-![](./img/tensorboard_spec_naive.png)
-![](./img/tensorboard_audio_naive.png)
-
-## Shallow Diffusion
-
-![](./img/tensorboard_loss_shallow.png)
-![](./img/tensorboard_spec_shallow.png)
-![](./img/tensorboard_audio_shallow.png)

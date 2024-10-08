@@ -13,7 +13,7 @@ pip3 install -r requirements.txt
 
 ## Inference
 
-You private message me to get pre-processing and put them in 
+You can send me a private message to obtain the processed model and put them in 
 - ``output/ckpt
 
 For a **single-speaker TTS**, run
